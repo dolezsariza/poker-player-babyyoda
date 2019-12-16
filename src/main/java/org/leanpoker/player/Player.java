@@ -122,6 +122,7 @@ public class Player {
                 "      \"id\":1\n" +
                 "    }\n" +
                 "  ],\n" +
+                "      \"in_action\":0,\n" +
                 "  \"tournament_id\":\"550d1d68cd7bd10003000003\",\n" +
                 "  \"game_id\":\"550da1cb2d909006e90004b1\",\n" +
                 "  \"round\":0,\n" +
