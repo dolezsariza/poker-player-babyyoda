@@ -28,22 +28,27 @@ public class Player {
         int pot  = jsonObject.get("pot").getAsInt();
 
 
-        List<Card> cards = new ArrayList<>();
+        List<Card> communityCards = new ArrayList<>();
+        List<Card> handCards = new ArrayList<>();
+        List<Card> allCards = new ArrayList<>();
+
         if(babyYoda!=null) {
             JsonArray holeCards = babyYoda.get("hole_cards").getAsJsonArray();
             for(JsonElement card : holeCards){
                 String rank = card.getAsJsonObject().get("rank").getAsString();
                 String suite = card.getAsJsonObject().get("suit").getAsString();
-                cards.add(new Card(rank, suite));
+                allCards.add(new Card(rank, suite));
+                handCards.add(new Card(rank, suite));
             }
 
             for(JsonElement communityCard : jsonObject.get("community_cards").getAsJsonArray()){
                 String rank = communityCard.getAsJsonObject().get("rank").getAsString();
                 String suite = communityCard.getAsJsonObject().get("suit").getAsString();
-                cards.add(new Card(rank, suite));
+                allCards.add(new Card(rank, suite));
+                communityCards.add(new Card(rank, suite));
             }
 
-            System.out.println(cards.toString());
+            System.out.println(allCards.toString());
 
         }
 
