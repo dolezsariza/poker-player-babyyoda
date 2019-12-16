@@ -15,18 +15,19 @@ public class Player {
     public static int betRequest(JsonElement request) {
         JsonObject jsonObject = request.getAsJsonObject();
         JsonArray players = jsonObject.get("players").getAsJsonArray();
-        JsonObject babyYoda;
+        JsonObject babyYoda = null;
 
         for (JsonElement player : players) {
-            if(player.getAsJsonObject().get("name").equals("BabyYosa")) {
+            if(player.getAsJsonObject().get("name").equals("BabyYoda")) {
                 babyYoda = player.getAsJsonObject();
             }
         }
         int currentBuyIn = jsonObject.get("current_buy_in").getAsInt();
         int pot  = jsonObject.get("pot").getAsInt();
         int minimumRaise  = jsonObject.get("minimum_raise").getAsInt();
-
-        JsonArray holeCards = babyYoda.get("hole_cards").getAsJsonArray();
+        if(babyYoda!=null) {
+            JsonArray holeCards = babyYoda.get("hole_cards").getAsJsonArray();
+        }
 
 
         return 500;
