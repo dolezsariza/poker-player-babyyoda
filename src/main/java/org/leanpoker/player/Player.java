@@ -55,6 +55,8 @@ public class Player {
 
             int toRaise = current_buy_in - bet;
 
+            System.out.println("IS FLUSH : "+cards.isFlush());
+
             switch (communityCards.size()) {
                 //első kör
                 case 0: {
@@ -147,7 +149,7 @@ public class Player {
                 "  \"current_buy_in\":0,\n" +
                 "  \"pot\":0\n" +
                 "}";
-        //betRequest(new JsonParser().parse(gameState));
+        betRequest(new JsonParser().parse(gameState));
     }
 
     public static void showdown(JsonElement game) {
