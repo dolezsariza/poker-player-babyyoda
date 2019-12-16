@@ -31,6 +31,9 @@ public class Player {
         List<Card> communityCards = new ArrayList<>();
         List<Card> handCards = new ArrayList<>();
         List<Card> allCards = new ArrayList<>();
+        Cards cards = new Cards();
+        cards.setCommunityCards(communityCards);
+        cards.setHoleCards(handCards);
 
         if(babyYoda!=null) {
             JsonArray holeCards = babyYoda.get("hole_cards").getAsJsonArray();
@@ -48,7 +51,7 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
-            System.out.println(allCards.toString());
+            System.out.println(cards.isHolePair());
 
         }
 
@@ -77,7 +80,7 @@ public class Player {
                 "                    \"suit\": \"hearts\"\n" +
                 "                },\n" +
                 "                {\n" +
-                "                    \"rank\": \"K\",\n" +
+                "                    \"rank\": \"8\",\n" +
                 "                    \"suit\": \"spades\"\n" +
                 "                }\n" +
                 "            ],\n" +
@@ -119,6 +122,7 @@ public class Player {
                 "  \"pot\":0\n" +
                 "}";
         betRequest(new JsonParser().parse(gameState));
+
     }
 
     public static void showdown(JsonElement game) {
