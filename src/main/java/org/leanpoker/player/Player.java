@@ -62,7 +62,7 @@ public class Player {
             for (JsonElement player : players) {
                 if (player.getAsJsonObject().get("name").getAsString().equals("TwoSeven")) {
                     if (player.getAsJsonObject().get("status").getAsString().equals("active")) {
-                        if(cards.getHoleCardsValue()> 18 || cards.isHolePair()) {
+                        if(cards.getHoleCardsValue()> 18 || (cards.isHolePair() && cards.getHoleCardsValue() > 14)) {
                             return call;
                         }else return 0;
                     }
