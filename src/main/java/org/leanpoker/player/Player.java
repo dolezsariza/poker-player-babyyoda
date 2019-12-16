@@ -35,6 +35,9 @@ public class Player {
         List<Card> communityCards = new ArrayList<>();
         List<Card> handCards = new ArrayList<>();
         List<Card> allCards = new ArrayList<>();
+        Cards cards = new Cards();
+        cards.setCommunityCards(communityCards);
+        cards.setHoleCards(handCards);
 
         if(babyYoda!=null) {
             JsonArray holeCards = babyYoda.get("hole_cards").getAsJsonArray();
@@ -54,14 +57,15 @@ public class Player {
 
             switch(round){
                 case 0: {
-                    if (handCards.get(0).rank == handCards.get(1).rank) {
+                    if(cards.isHolePair()){
                         return 1000;
-                    } else if (handCards.get(0).rank > 8 || handCards.get(1).rank > 8) {
-                        if (handCards.get(0).suit.equals(handCards.get(1).suit)) {
-                            return 600;
-                        } else return 0;
-                    } else return 0;
+                    }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
+                        if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 600;}
+                        else return 0;
+                    }else return 0;
+
                 }
+
                 case 1:
 
                 case 2:
