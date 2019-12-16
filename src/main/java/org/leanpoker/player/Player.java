@@ -69,11 +69,13 @@ public class Player {
                             return call;
                         }
                     } else if (cards.getHoleCardsValue() > 15) {
-                        if (current_buy_in < 600) {
+                        if (current_buy_in < 200) {
                             return call;
                         }
                     } else if (cards.getHoleCardsValue() > 20){
-                        return call;
+                        if (current_buy_in < 250) {
+                            return call;
+                        }
                     }
 
                     else return 0;
