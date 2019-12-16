@@ -19,12 +19,14 @@ public class Player {
         JsonArray players = jsonObject.get("players").getAsJsonArray();
         JsonObject babyYoda = null;
 
-        for (JsonElement player : players) {
-            if(player.getAsJsonObject().get("name").getAsString().equals("Player 1")) {
-                babyYoda = player.getAsJsonObject();
-            }
-        }
+        babyYoda = players.get(jsonObject.get("in_action").getAsInt()).getAsJsonObject();
+
+
         int currentBuyIn = jsonObject.get("current_buy_in").getAsInt();
+
+        int round = jsonObject.get("round").getAsInt();
+
+        int current_buy_in = jsonObject.get("current_buy_in").getAsInt();
         int pot  = jsonObject.get("pot").getAsInt();
 
 
@@ -51,24 +53,27 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
-            System.out.println(cards.isTwoPairs());
+            switch(round){
+                case 0: {
+                    if(cards.isHolePair()){
+                        return 1000;
+                    }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
+                        if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 600;}
+                        else return 0;
+                    }else return 0;
 
-            if(cards.isHolePair()){
-                return 1000;
-            }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
-                if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 600;}
-                else return 0;
-            }else return 0;
+                }
+
+                case 1:
+
+                case 2:
+                case 3:
+                case 4:return current_buy_in;
+            }
+
 
         }
-
-
-
-
-
-
-
-        return 1000;
+        return current_buy_in;
     }
 
 
@@ -83,11 +88,11 @@ public class Player {
                 "      \"bet\":0,\n" +
                 "      \"hole_cards\":[\n" +
                 "                {\n" +
-                "                    \"rank\": \"3\",\n" +
+                "                    \"rank\": \"6\",\n" +
                 "                    \"suit\": \"hearts\"\n" +
                 "                },\n" +
                 "                {\n" +
-                "                    \"rank\": \"4\",\n" +
+                "                    \"rank\": \"K\",\n" +
                 "                    \"suit\": \"spades\"\n" +
                 "                }\n" +
                 "            ],\n" +
