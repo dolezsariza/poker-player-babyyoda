@@ -28,4 +28,8 @@ public class Cards {
         return this.holeCards.get(0).rank == this.holeCards.get(1).rank;
     }
 
+    public int getHoleCardsValue() {
+        return this.holeCards.get(0).rank + this.holeCards.get(1).rank;
+    }
+
 }
