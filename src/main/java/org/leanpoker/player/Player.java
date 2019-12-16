@@ -5,6 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,16 +20,37 @@ public class Player {
         JsonObject babyYoda = null;
 
         for (JsonElement player : players) {
-            if(player.getAsJsonObject().get("name").equals("BabyYoda")) {
+            if(player.getAsJsonObject().get("name").getAsString().equals("Player 1")) {
                 babyYoda = player.getAsJsonObject();
             }
         }
         int currentBuyIn = jsonObject.get("current_buy_in").getAsInt();
         int pot  = jsonObject.get("pot").getAsInt();
-        int minimumRaise  = jsonObject.get("minimum_raise").getAsInt();
+
+
+        List<Card> cards = new ArrayList<>();
         if(babyYoda!=null) {
             JsonArray holeCards = babyYoda.get("hole_cards").getAsJsonArray();
+            for(JsonElement card : holeCards){
+                String rank = card.getAsJsonObject().get("rank").getAsString();
+                String suite = card.getAsJsonObject().get("suit").getAsString();
+                cards.add(new Card(rank, suite));
+            }
+
+            for(JsonElement communityCard : jsonObject.get("community_cards").getAsJsonArray()){
+                String rank = communityCard.getAsJsonObject().get("rank").getAsString();
+                String suite = communityCard.getAsJsonObject().get("suit").getAsString();
+                cards.add(new Card(rank, suite));
+            }
+
+            System.out.println(cards.toString());
+
         }
+
+
+
+
+
 
 
         return 500;
@@ -39,10 +62,20 @@ public class Player {
                 "  \"players\":[\n" +
                 "    {\n" +
                 "      \"name\":\"Player 1\",\n" +
+                "     \"minimum_raise\": 240,\n"+
                 "      \"stack\":1000,\n" +
                 "      \"status\":\"active\",\n" +
                 "      \"bet\":0,\n" +
-                "      \"hole_cards\":[],\n" +
+                "      \"hole_cards\":[\n" +
+                "                {\n" +
+                "                    \"rank\": \"6\",\n" +
+                "                    \"suit\": \"hearts\"\n" +
+                "                },\n" +
+                "                {\n" +
+                "                    \"rank\": \"K\",\n" +
+                "                    \"suit\": \"spades\"\n" +
+                "                }\n" +
+                "            ],\n" +
                 "      \"version\":\"Version name 1\",\n" +
                 "      \"id\":0\n" +
                 "    },\n" +
@@ -63,7 +96,20 @@ public class Player {
                 "  \"small_blind\":10,\n" +
                 "  \"orbits\":0,\n" +
                 "  \"dealer\":0,\n" +
-                "  \"community_cards\":[],\n" +
+                "  \"community_cards\":[\n" +
+                "        {\n" +
+                "            \"rank\": \"4\",\n" +
+                "            \"suit\": \"spades\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"rank\": \"A\",\n" +
+                "            \"suit\": \"hearts\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"rank\": \"6\",\n" +
+                "            \"suit\": \"clubs\"\n" +
+                "        }\n" +
+                "    ],\n" +
                 "  \"current_buy_in\":0,\n" +
                 "  \"pot\":0\n" +
                 "}";
