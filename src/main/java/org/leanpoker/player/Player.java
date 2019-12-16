@@ -55,7 +55,7 @@ public class Player {
 
             int toRaise = current_buy_in - bet;
 
-            switch (round) {
+            switch (communityCards.size()) {
                 //első kör
                 case 0: {
                     //pár
@@ -73,11 +73,10 @@ public class Player {
 
                 }
 
-                case 1:
-
-                case 2:
                 case 3:
+
                 case 4:
+                case 5:
                     if (current_buy_in < 200) {
                         return toRaise;
                     } else return 0;
