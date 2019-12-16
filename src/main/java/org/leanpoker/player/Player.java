@@ -13,11 +13,7 @@ public class Player {
     public static int betRequest(JsonElement request) {
         JsonObject obj = request.getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> entries = obj.entrySet();
-        for (Map.Entry<String, JsonElement> entry: entries) {
-            if(entry.getKey().equals("game_id")){
-                System.err.println(entry.getKey());
-            }
-        }
+        System.err.println("IS THIS EVEN WORKING?");
         return 500;
     }
 
