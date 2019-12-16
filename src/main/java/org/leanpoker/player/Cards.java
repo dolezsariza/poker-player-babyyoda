@@ -26,12 +26,13 @@ public class Cards {
         this.holeCards = holeCards;
     }
 
-    public boolean isHolePair() {
-        return this.holeCards.get(0).rank == this.holeCards.get(1).rank;
-    }
 
     public int getHoleCardsValue() {
         return this.holeCards.get(0).rank + this.holeCards.get(1).rank;
+    }
+
+    public boolean isHolePair() {
+        return this.holeCards.get(0).rank == this.holeCards.get(1).rank;
     }
 
     public boolean isMixedPair() {
@@ -65,6 +66,35 @@ public class Cards {
             }
         }
         return numOfPairs == 2;
+    }
+
+    public boolean isFlush(){
+
+        if(holeCards.get(0).suit.equals(holeCards.get(1).suit)){
+            int suits = 2;
+            for(Card communityCard: communityCards){
+                if(communityCard.suit.equals(holeCards.get(0).suit)){
+                    suits++;
+                }
+            }
+            if(suits == 5 || suits == 6)return true;
+        }else {
+            int suit1 = 1;
+            for (Card communityCard : communityCards) {
+                if (communityCard.suit.equals(holeCards.get(0).suit)) {
+                    suit1++;
+                }
+            }
+            if (suit1 == 5) return true;
+
+            int suit2 = 1;
+            for (Card communityCard : communityCards) {
+                if (communityCard.suit.equals(holeCards.get(1).suit)) {
+                    suit2++;
+                }
+            }
+            if (suit2 == 5) return true;
+        }return false;
     }
 
     public boolean isDrill() {
