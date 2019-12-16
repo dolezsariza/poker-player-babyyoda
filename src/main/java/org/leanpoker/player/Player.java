@@ -62,33 +62,92 @@ public class Player {
                 case 0: {
                     //pár
                     if (cards.isHolePair()) {
-                        if(current_buy_in < 200){
+                        if (current_buy_in < 200) {
                             return 500;
-                        }else{
+                        } else {
                             return toRaise;
                         }
                     } else if (cards.getHoleCardsValue() > 15) {
-                       if(current_buy_in < 200){
-                           return toRaise;
-                       }
+                        if (current_buy_in < 200) {
+                            return toRaise;
+                        }
                     } else return 0;
 
                 }
 
-                case 3:
+                case 1: {
+                    if (cards.isHolePair()
+                            || cards.isMixedPair()
+                            || cards.isTwoPairs()
+                            || cards.isDrill()) {
+                        if (current_buy_in < 300) {
+                            return toRaise;
+                        } else {
+                            return 0;
+                        }
+                    }
 
-                case 4:
-                case 5:
+                    //TODO: if (cards.isPoker || cards.isFlush || cards.isStreak) { ALL IN }
+
+                }
+
+                case 2: {
+
+                    if (cards.isHolePair()
+                            || cards.isMixedPair()
+                            || cards.isTwoPairs()
+                            || cards.isDrill()) {
+                        if (current_buy_in < 300) {
+                            return toRaise;
+                        } else {
+                            return 0;
+                        }
+                    }
+
+                    //TODO: if (cards.isPoker || cards.isFlush || cards.isStreak) { ALL IN }
+                }
+
+                case 3: {
+                    if (cards.isHolePair()
+                            || cards.isMixedPair()
+                            || cards.isTwoPairs()
+                            || cards.isDrill()) {
+                        if (current_buy_in < 300) {
+                            return toRaise;
+                        } else {
+                            return 0;
+                        }
+                    }
+
+                    //TODO: if (cards.isPoker || cards.isFlush || cards.isStreak) { ALL IN }
+
+                }
+                case 4: {
+                    if (cards.isHolePair()
+                            || cards.isMixedPair()
+                            || cards.isTwoPairs()
+                            || cards.isDrill()) {
+                        if (current_buy_in < 300) {
+                            return toRaise;
+                        } else {
+                            return 0;
+                        }
+                    }
+
+                    //TODO: if (cards.isPoker || cards.isFlush || cards.isStreak) { ALL IN }
+
+                }
+                case 5: {
                     if (current_buy_in < 200) {
                         return toRaise;
                     } else return 0;
+                }
             }
-
-
+            if (current_buy_in < 200) {
+                return current_buy_in;
+            } else return 0;
         }
-        if (current_buy_in < 200) {
-            return current_buy_in;
-        } else return 0;
+        return 0;
     }
 
 

@@ -24,12 +24,13 @@ public class Cards {
         this.holeCards = holeCards;
     }
 
-    public boolean isHolePair() {
-        return this.holeCards.get(0).rank == this.holeCards.get(1).rank;
-    }
 
     public int getHoleCardsValue() {
         return this.holeCards.get(0).rank + this.holeCards.get(1).rank;
+    }
+
+    public boolean isHolePair() {
+        return this.holeCards.get(0).rank == this.holeCards.get(1).rank;
     }
 
     public boolean isMixedPair() {
