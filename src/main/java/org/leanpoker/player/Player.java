@@ -14,6 +14,7 @@ public class Player {
         JsonObject obj = request.getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> entries = obj.entrySet();
         for (Map.Entry<String, JsonElement> entry: entries) {
+            System.err.println(entry.getKey());
             System.out.println(entry.getKey());
         }
         return 500;
