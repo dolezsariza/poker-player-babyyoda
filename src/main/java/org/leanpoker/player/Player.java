@@ -53,6 +53,8 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
+            System.out.println(cards.isDrill());
+
             switch (round) {
                 case 0: {
                     if (cards.isHolePair()) {
