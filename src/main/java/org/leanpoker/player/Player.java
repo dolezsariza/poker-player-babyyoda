@@ -94,7 +94,7 @@ public class Player {
                 "      \"bet\":0,\n" +
                 "      \"hole_cards\":[\n" +
                 "                {\n" +
-                "                    \"rank\": \"6\",\n" +
+                "                    \"rank\": \"4\",\n" +
                 "                    \"suit\": \"hearts\"\n" +
                 "                },\n" +
                 "                {\n" +
@@ -128,7 +128,7 @@ public class Player {
                 "            \"suit\": \"spades\"\n" +
                 "        },\n" +
                 "        {\n" +
-                "            \"rank\": \"A\",\n" +
+                "            \"rank\": \"6\",\n" +
                 "            \"suit\": \"hearts\"\n" +
                 "        },\n" +
                 "        {\n" +
@@ -139,7 +139,7 @@ public class Player {
                 "  \"current_buy_in\":0,\n" +
                 "  \"pot\":0\n" +
                 "}";
-        betRequest(new JsonParser().parse(gameState));
+        //betRequest(new JsonParser().parse(gameState));
     }
 
     public static void showdown(JsonElement game) {
