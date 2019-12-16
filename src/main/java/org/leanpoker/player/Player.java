@@ -20,9 +20,9 @@ public class Player {
         JsonObject babyYoda = null;
 
 
-        for(JsonElement player: players){
-            if(player.getAsJsonObject().get("name").getAsString().equals("TwoSeven")){
-                if(player.getAsJsonObject().get("status").getAsString().equals("active"))return 1000;
+        for (JsonElement player : players) {
+            if (player.getAsJsonObject().get("name").getAsString().equals("TwoSeven")) {
+                if (player.getAsJsonObject().get("status").getAsString().equals("active")) return 0;
             }
         }
 
@@ -63,66 +63,37 @@ public class Player {
             int call = current_buy_in - bet;
             int stack = babyYoda.get("stack").getAsInt();
 
-            System.out.println("IS FLUSH : "+cards.isFlush());
 
             switch (communityCards.size()) {
                 //első kör
                 case 0: {
                     //pár
-                    if (cards.isHolePair()) {
-                        if (current_buy_in < 200) {
-                            return call+200;
-                        } else {
-                            return call;
-                        }
-                    } else if (cards.getHoleCardsValue() > 15) {
-                        if (current_buy_in < 200) {
-                            return call;
-                        }
-                    } else if (cards.getHoleCardsValue() > 20){
-                        if (current_buy_in < 250) {
-                            return call;
-                        }
-                    }
-
-                    else return 0;
+                    if (cards.isHolePair() || cards.getHoleCardsValue() > 16) {
+                        return call;
+                    } else return 0;
 
                 }
 
                 case 3:
-
-                case 4: {
-
-                    if (cards.isDrill() || cards.isFlush()) {
-                        return stack;
-                    }
-
-                    else if (cards.isHolePair()
-                            || cards.isMixedPair()
-                            || cards.isTwoPairs())
-                    {
-                        return call + 200;
-                    } else {
-                        if (current_buy_in < 500) {
-                            return call;
-                        } else {
-                            return 0;
-                        }
-                    }
-
-
-                    //TODO: if (cards.isPoker || cards.isStraight) { ALL IN }
-                }
-
+                case 4:
                 case 5: {
-                    if (current_buy_in < 200) {
+
+                    if (cards.isDrill()
+                            || cards.isFlush()
+                            || cards.isTwoPairs()
+                            || cards.isFullHouse()
+                    ) {
+                        return stack;
+                    } else if (cards.isHolePair()
+                            || cards.isMixedPair()
+
+                    ) {
                         return call;
-                    } else return 0;
+                    } else {
+                        return 0;
+                    }
                 }
             }
-            if (current_buy_in < 200) {
-                return current_buy_in;
-            } else return 0;
         }
         return 0;
     }
