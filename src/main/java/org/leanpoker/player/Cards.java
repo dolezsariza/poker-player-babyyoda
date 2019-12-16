@@ -94,4 +94,13 @@ public class Cards {
         }return false;
     }
 
+    public boolean isDrill() {
+        for (Card card: communityCards) {
+            if(card.rank == holeCards.get(0).rank && card.rank == holeCards.get(1).rank) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
