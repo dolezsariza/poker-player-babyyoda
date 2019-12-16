@@ -51,6 +51,8 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
+            System.out.println(cards.getCardsValue());
+
             if(cards.isHolePair()){
                 return 1000;
             }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
