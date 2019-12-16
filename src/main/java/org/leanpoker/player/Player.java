@@ -19,11 +19,9 @@ public class Player {
         JsonArray players = jsonObject.get("players").getAsJsonArray();
         JsonObject babyYoda = null;
 
-        for (JsonElement player : players) {
-            if(player.getAsJsonObject().get("name").getAsString().equals("Player 1")) {
-                babyYoda = player.getAsJsonObject();
-            }
-        }
+        babyYoda = players.get(jsonObject.get("in_action").getAsInt()).getAsJsonObject();
+
+
         int currentBuyIn = jsonObject.get("current_buy_in").getAsInt();
 
         int round = jsonObject.get("round").getAsInt();
