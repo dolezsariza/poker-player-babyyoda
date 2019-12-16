@@ -25,7 +25,7 @@ public class Player {
         int currentBuyIn = jsonObject.get("current_buy_in").getAsInt();
 
         int round = jsonObject.get("round").getAsInt();
-
+        int bet = babyYoda.get("bet").getAsInt();
         int current_buy_in = jsonObject.get("current_buy_in").getAsInt();
         int pot = jsonObject.get("pot").getAsInt();
 
@@ -53,25 +53,32 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
-            switch (round) {
+            int toRaise = current_buy_in - bet;
+
+            switch (communityCards.size()) {
+                //első kör
                 case 0: {
+                    //pár
                     if (cards.isHolePair()) {
-                        return 1000;
-                    } else if (handCards.get(0).rank > 8 || handCards.get(1).rank > 8) {
-                        if (handCards.get(0).suit.equals(handCards.get(1).suit)) {
-                            return 100;
-                        } else return 0;
+                        if(current_buy_in < 200){
+                            return 500;
+                        }else{
+                            return toRaise;
+                        }
+                    } else if (cards.getHoleCardsValue() > 15) {
+                       if(current_buy_in < 200){
+                           return toRaise;
+                       }
                     } else return 0;
 
                 }
 
-                case 1:
-
-                case 2:
                 case 3:
+
                 case 4:
+                case 5:
                     if (current_buy_in < 200) {
-                        return current_buy_in;
+                        return toRaise;
                     } else return 0;
             }
 
