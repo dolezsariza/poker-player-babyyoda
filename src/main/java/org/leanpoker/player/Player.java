@@ -19,6 +19,13 @@ public class Player {
         JsonArray players = jsonObject.get("players").getAsJsonArray();
         JsonObject babyYoda = null;
 
+
+        for(JsonElement player:  players){
+            if(player.getAsJsonObject().get("name").getAsString().equals("TwoSeven")){
+                if(player.getAsJsonObject().get("status").getAsString().equals("active"))return 0;
+            }
+        }
+
         babyYoda = players.get(jsonObject.get("in_action").getAsInt()).getAsJsonObject();
 
 
