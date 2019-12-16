@@ -80,29 +80,7 @@ public class Player {
 
                 }
 
-                case 3: {
-
-                    if (cards.isDrill() || cards.isFlush()) {
-                        return stack;
-                    }
-
-                    else if (cards.isHolePair()
-                        || cards.isMixedPair()
-                        || cards.isTwoPairs())
-                         {
-                             return call + 200;
-                    } else {
-                        if (current_buy_in < 500) {
-                            return call;
-                        } else {
-                            return 0;
-                        }
-                    }
-
-
-                    //TODO: if (cards.isPoker || cards.isStraight) { ALL IN }
-
-                }
+                case 3:
 
                 case 4: {
 
