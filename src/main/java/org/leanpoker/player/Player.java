@@ -79,7 +79,7 @@ public class Player {
                 case 3:
                 case 4:
                     if (current_buy_in < 200) {
-                        return current_buy_in;
+                        return toRaise;
                     } else return 0;
             }
 
