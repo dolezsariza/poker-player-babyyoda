@@ -54,6 +54,7 @@ public class Player {
             }
 
             int call = current_buy_in - bet;
+            int stack = babyYoda.get("stack").getAsInt();
 
             System.out.println("IS FLUSH : "+cards.isFlush());
 
@@ -68,19 +69,29 @@ public class Player {
                             return call;
                         }
                     } else if (cards.getHoleCardsValue() > 15) {
-                        if (current_buy_in < 200) {
+                        if (current_buy_in < 600) {
                             return call;
                         }
-                    } else return 0;
+                    } else if (cards.getHoleCardsValue() > 20){
+                        return call;
+                    }
+
+                    else return 0;
 
                 }
 
                 case 1: {
-                    if (cards.isHolePair()
-                            || cards.isMixedPair()
-                            || cards.isTwoPairs()
-                            || cards.isDrill()) {
-                        if (current_buy_in < 300) {
+                    if (cards.isDrill()) {
+                        return stack;
+                    }
+
+                    else if (cards.isHolePair()
+                        || cards.isMixedPair()
+                        || cards.isTwoPairs())
+                         {
+                             return call + 200;
+                    } else {
+                        if (current_buy_in < 500) {
                             return call;
                         } else {
                             return 0;
