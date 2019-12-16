@@ -45,14 +45,7 @@ public class Cards {
     }
 
     public boolean isCommunityPair() {
-
-        for (int j = 0; j < communityCards.size()-1;j++) {
-            for (int i = j + 1; i < communityCards.size(); i++) {
-                if (communityCards.get(j) == communityCards.get(i)) {
-                    return true;
-                }
-            }
-        }
+        
         return false;
     }
     public boolean isTwoPairs() {
