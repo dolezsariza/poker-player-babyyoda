@@ -1,6 +1,8 @@
 package org.leanpoker.player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Cards {
@@ -69,6 +71,35 @@ public class Cards {
         for (Card card: communityCards) {
             if(card.rank == holeCards.get(0).rank && card.rank == holeCards.get(1).rank) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isFullHouse() {
+        List<Card> cards = new ArrayList<>();
+        boolean isDrill = false;
+        cards.addAll(communityCards);
+        cards.addAll(holeCards);
+        List<Integer> values = new ArrayList<>();
+        for (Card card: cards) {
+            values.add(card.rank);
+        }
+        Collections.sort(values);
+        for (int i = 0; i < values.size()-2; i++) {
+            if (values.get(i) == values.get(i+1) && values.get(i) == values.get(i+2)) {
+                isDrill = true;
+                values.remove(values.get(i));
+                values.remove(values.get(i));
+                values.remove(values.get(i));
+            }
+        }
+        if (isDrill) {
+            for (int i = 0; i < values.size()-1; i++) {
+
+                if (values.get(i) == values.get(i + 1)) {
+                    return true;
+                }
             }
         }
         return false;

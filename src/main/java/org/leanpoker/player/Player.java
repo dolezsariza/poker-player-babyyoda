@@ -53,6 +53,8 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
+            System.out.println(cards.isFullHouse());
+
             int toRaise = current_buy_in - bet;
 
             switch (communityCards.size()) {
@@ -105,7 +107,7 @@ public class Player {
                 "                    \"suit\": \"hearts\"\n" +
                 "                },\n" +
                 "                {\n" +
-                "                    \"rank\": \"K\",\n" +
+                "                    \"rank\": \"6\",\n" +
                 "                    \"suit\": \"spades\"\n" +
                 "                }\n" +
                 "            ],\n" +
@@ -140,14 +142,14 @@ public class Player {
                 "            \"suit\": \"hearts\"\n" +
                 "        },\n" +
                 "        {\n" +
-                "            \"rank\": \"6\",\n" +
+                "            \"rank\": \"4\",\n" +
                 "            \"suit\": \"clubs\"\n" +
                 "        }\n" +
                 "    ],\n" +
                 "  \"current_buy_in\":0,\n" +
                 "  \"pot\":0\n" +
                 "}";
-        //betRequest(new JsonParser().parse(gameState));
+        betRequest(new JsonParser().parse(gameState));
     }
 
     public static void showdown(JsonElement game) {
