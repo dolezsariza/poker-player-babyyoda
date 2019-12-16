@@ -27,7 +27,7 @@ public class Player {
         int round = jsonObject.get("round").getAsInt();
 
         int current_buy_in = jsonObject.get("current_buy_in").getAsInt();
-        int pot  = jsonObject.get("pot").getAsInt();
+        int pot = jsonObject.get("pot").getAsInt();
 
 
         List<Card> communityCards = new ArrayList<>();
@@ -37,30 +37,31 @@ public class Player {
         cards.setCommunityCards(communityCards);
         cards.setHoleCards(handCards);
 
-        if(babyYoda!=null) {
+        if (babyYoda != null) {
             JsonArray holeCards = babyYoda.get("hole_cards").getAsJsonArray();
-            for(JsonElement card : holeCards){
+            for (JsonElement card : holeCards) {
                 String rank = card.getAsJsonObject().get("rank").getAsString();
                 String suite = card.getAsJsonObject().get("suit").getAsString();
                 allCards.add(new Card(rank, suite));
                 handCards.add(new Card(rank, suite));
             }
 
-            for(JsonElement communityCard : jsonObject.get("community_cards").getAsJsonArray()){
+            for (JsonElement communityCard : jsonObject.get("community_cards").getAsJsonArray()) {
                 String rank = communityCard.getAsJsonObject().get("rank").getAsString();
                 String suite = communityCard.getAsJsonObject().get("suit").getAsString();
                 allCards.add(new Card(rank, suite));
                 communityCards.add(new Card(rank, suite));
             }
 
-            switch(round){
+            switch (round) {
                 case 0: {
-                    if(cards.isHolePair()){
+                    if (cards.isHolePair()) {
                         return 1000;
-                    }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
-                        if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 600;}
-                        else return 0;
-                    }else return 0;
+                    } else if (handCards.get(0).rank > 8 || handCards.get(1).rank > 8) {
+                        if (handCards.get(0).suit.equals(handCards.get(1).suit)) {
+                            return 100;
+                        } else return 0;
+                    } else return 0;
 
                 }
 
@@ -68,12 +69,17 @@ public class Player {
 
                 case 2:
                 case 3:
-                case 4:return current_buy_in;
+                case 4:
+                    if (current_buy_in < 200) {
+                        return current_buy_in;
+                    } else return 0;
             }
 
 
         }
-        return current_buy_in;
+        if (current_buy_in < 200) {
+            return current_buy_in;
+        } else return 0;
     }
 
 
@@ -82,7 +88,7 @@ public class Player {
                 "  \"players\":[\n" +
                 "    {\n" +
                 "      \"name\":\"Player 1\",\n" +
-                "     \"minimum_raise\": 240,\n"+
+                "     \"minimum_raise\": 240,\n" +
                 "      \"stack\":1000,\n" +
                 "      \"status\":\"active\",\n" +
                 "      \"bet\":0,\n" +
