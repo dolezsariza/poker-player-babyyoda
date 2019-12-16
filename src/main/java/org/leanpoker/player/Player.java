@@ -73,10 +73,22 @@ public class Player {
 
                 }
 
+                case 1: {
+                    if (cards.isHolePair()
+                        || cards.isMixedPair()
+                        || cards.isTwoPairs()
+                        || cards.){
+
+                    }
+                }
+
+                case 2:
+
                 case 3:
 
                 case 4:
-                case 5:
+
+                    case 5:
                     if (current_buy_in < 200) {
                         return toRaise;
                     } else return 0;
