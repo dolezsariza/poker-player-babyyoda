@@ -80,8 +80,9 @@ public class Player {
 
                 }
 
-                case 1: {
-                    if (cards.isDrill()) {
+                case 3: {
+
+                    if (cards.isDrill() || cards.isFlush()) {
                         return stack;
                     }
 
@@ -98,56 +99,34 @@ public class Player {
                         }
                     }
 
-                    //TODO: if (cards.isPoker || cards.isFlush || cards.isStreak) { ALL IN }
+
+                    //TODO: if (cards.isPoker || cards.isStraight) { ALL IN }
 
                 }
 
-                case 2: {
-
-                    if (cards.isHolePair()
-                            || cards.isMixedPair()
-                            || cards.isTwoPairs()
-                            || cards.isDrill()) {
-                        if (current_buy_in < 300) {
-                            return call;
-                        } else {
-                            return 0;
-                        }
-                    }
-
-                    //TODO: if (cards.isPoker || cards.isFlush || cards.isStreak) { ALL IN }
-                }
-
-                case 3: {
-                    if (cards.isHolePair()
-                            || cards.isMixedPair()
-                            || cards.isTwoPairs()
-                            || cards.isDrill()) {
-                        if (current_buy_in < 300) {
-                            return call;
-                        } else {
-                            return 0;
-                        }
-                    }
-
-                    //TODO: if (cards.isPoker || cards.isFlush || cards.isStreak) { ALL IN }
-
-                }
                 case 4: {
-                    if (cards.isHolePair()
+
+                    if (cards.isDrill() || cards.isFlush()) {
+                        return stack;
+                    }
+
+                    else if (cards.isHolePair()
                             || cards.isMixedPair()
-                            || cards.isTwoPairs()
-                            || cards.isDrill()) {
-                        if (current_buy_in < 300) {
+                            || cards.isTwoPairs())
+                    {
+                        return call + 200;
+                    } else {
+                        if (current_buy_in < 500) {
                             return call;
                         } else {
                             return 0;
                         }
                     }
 
-                    //TODO: if (cards.isPoker || cards.isFlush || cards.isStreak) { ALL IN }
 
+                    //TODO: if (cards.isPoker || cards.isStraight) { ALL IN }
                 }
+
                 case 5: {
                     if (current_buy_in < 200) {
                         return call;
