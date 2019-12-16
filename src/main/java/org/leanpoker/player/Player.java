@@ -25,6 +25,10 @@ public class Player {
             }
         }
         int currentBuyIn = jsonObject.get("current_buy_in").getAsInt();
+
+        int round = jsonObject.get("round").getAsInt();
+
+        int current_buy_in = jsonObject.get("current_buy_in").getAsInt();
         int pot  = jsonObject.get("pot").getAsInt();
 
 
@@ -48,22 +52,26 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
-            if(handCards.get(0).rank == handCards.get(1).rank){
-                return 1000;
-            }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
-                if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 600;}
-                else return 0;
-            }else return 0;
+            switch(round){
+                case 0: {
+                    if (handCards.get(0).rank == handCards.get(1).rank) {
+                        return 1000;
+                    } else if (handCards.get(0).rank > 8 || handCards.get(1).rank > 8) {
+                        if (handCards.get(0).suit.equals(handCards.get(1).suit)) {
+                            return 600;
+                        } else return 0;
+                    } else return 0;
+                }
+                case 1:
+
+                case 2:
+                case 3:
+                case 4:return current_buy_in;
+            }
+
 
         }
-
-
-
-
-
-
-
-        return 1000;
+        return current_buy_in;
     }
 
 
