@@ -51,6 +51,8 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
+            System.out.println(cards.isTwoPairs());
+
             if(cards.isHolePair()){
                 return 1000;
             }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
@@ -81,11 +83,11 @@ public class Player {
                 "      \"bet\":0,\n" +
                 "      \"hole_cards\":[\n" +
                 "                {\n" +
-                "                    \"rank\": \"6\",\n" +
+                "                    \"rank\": \"3\",\n" +
                 "                    \"suit\": \"hearts\"\n" +
                 "                },\n" +
                 "                {\n" +
-                "                    \"rank\": \"K\",\n" +
+                "                    \"rank\": \"4\",\n" +
                 "                    \"suit\": \"spades\"\n" +
                 "                }\n" +
                 "            ],\n" +
