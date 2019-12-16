@@ -51,7 +51,12 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
-            System.out.println(cards.isHolePair());
+            if(handCards.get(0).rank == handCards.get(1).rank){
+                return 1000;
+            }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
+                if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 600;}
+                else return 0;
+            }else return 0;
 
         }
 
@@ -80,7 +85,7 @@ public class Player {
                 "                    \"suit\": \"hearts\"\n" +
                 "                },\n" +
                 "                {\n" +
-                "                    \"rank\": \"8\",\n" +
+                "                    \"rank\": \"K\",\n" +
                 "                    \"suit\": \"spades\"\n" +
                 "                }\n" +
                 "            ],\n" +
@@ -122,7 +127,6 @@ public class Player {
                 "  \"pot\":0\n" +
                 "}";
         betRequest(new JsonParser().parse(gameState));
-
     }
 
     public static void showdown(JsonElement game) {
