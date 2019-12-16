@@ -20,9 +20,9 @@ public class Player {
         JsonObject babyYoda = null;
 
 
-        for(JsonElement player:  players){
+        for(JsonElement player: players){
             if(player.getAsJsonObject().get("name").getAsString().equals("TwoSeven")){
-                if(player.getAsJsonObject().get("status").getAsString().equals("active"))return 0;
+                if(player.getAsJsonObject().get("status").getAsString().equals("active"))return 1000;
             }
         }
 
