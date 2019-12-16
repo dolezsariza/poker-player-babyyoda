@@ -66,4 +66,13 @@ public class Cards {
         return numOfPairs == 2;
     }
 
+    public boolean isDrill() {
+        for (Card card: communityCards) {
+            if(card.rank == holeCards.get(0).rank && card.rank == holeCards.get(1).rank) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
