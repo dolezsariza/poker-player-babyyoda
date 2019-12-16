@@ -32,4 +32,26 @@ public class Cards {
         return this.holeCards.get(0).rank + this.holeCards.get(1).rank;
     }
 
+    public boolean isCommunityPair() {
+        for (Card card: communityCards) {
+            if(card.rank == holeCards.get(0).rank || card.rank == holeCards.get(1).rank) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isTwoPairs() {
+        int numOfPairs = 0;
+        for (Card card: communityCards) {
+            if(card.rank == holeCards.get(0).rank) {
+                numOfPairs++;
+            }
+            if(card.rank == holeCards.get(1).rank) {
+                numOfPairs++;
+            }
+        }
+        return numOfPairs == 2;
+    }
+
 }
