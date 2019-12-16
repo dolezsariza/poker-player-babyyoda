@@ -20,11 +20,6 @@ public class Player {
         JsonObject babyYoda = null;
 
 
-        for (JsonElement player : players) {
-            if (player.getAsJsonObject().get("name").getAsString().equals("TwoSeven")) {
-                if (player.getAsJsonObject().get("status").getAsString().equals("active")) return 0;
-            }
-        }
 
         babyYoda = players.get(jsonObject.get("in_action").getAsInt()).getAsJsonObject();
 
@@ -62,6 +57,18 @@ public class Player {
 
             int call = current_buy_in - bet;
             int stack = babyYoda.get("stack").getAsInt();
+
+
+            for (JsonElement player : players) {
+                if (player.getAsJsonObject().get("name").getAsString().equals("TwoSeven")) {
+                    if (player.getAsJsonObject().get("status").getAsString().equals("active")) {
+                        if(cards.getHoleCardsValue()> 18 || cards.isHolePair()) {
+                            return call;
+                        }else return 0;
+                    }
+                }
+            }
+
 
 
             switch (communityCards.size()) {
