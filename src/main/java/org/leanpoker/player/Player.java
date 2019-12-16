@@ -51,9 +51,9 @@ public class Player {
             if(handCards.get(0).rank == handCards.get(1).rank){
                 return 1000;
             }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
-                if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 800;}
+                if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 600;}
                 else return 0;
-            }else return 1000;
+            }else return 501;
 
         }
 
