@@ -53,7 +53,7 @@ public class Player {
             }else if(handCards.get(0).rank > 8 || handCards.get(1).rank > 8){
                 if(handCards.get(0).suit.equals(handCards.get(1).suit)){return 600;}
                 else return 0;
-            }else return 501;
+            }else return 0;
 
         }
 
