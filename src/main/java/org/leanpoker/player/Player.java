@@ -53,7 +53,7 @@ public class Player {
                 communityCards.add(new Card(rank, suite));
             }
 
-            int toRaise = current_buy_in - bet;
+            int call = current_buy_in - bet;
 
             System.out.println("IS FLUSH : "+cards.isFlush());
 
@@ -63,13 +63,13 @@ public class Player {
                     //pár
                     if (cards.isHolePair()) {
                         if (current_buy_in < 200) {
-                            return 500;
+                            return call+200;
                         } else {
-                            return toRaise;
+                            return call;
                         }
                     } else if (cards.getHoleCardsValue() > 15) {
                         if (current_buy_in < 200) {
-                            return toRaise;
+                            return call;
                         }
                     } else return 0;
 
@@ -81,7 +81,7 @@ public class Player {
                             || cards.isTwoPairs()
                             || cards.isDrill()) {
                         if (current_buy_in < 300) {
-                            return toRaise;
+                            return call;
                         } else {
                             return 0;
                         }
@@ -98,7 +98,7 @@ public class Player {
                             || cards.isTwoPairs()
                             || cards.isDrill()) {
                         if (current_buy_in < 300) {
-                            return toRaise;
+                            return call;
                         } else {
                             return 0;
                         }
@@ -113,7 +113,7 @@ public class Player {
                             || cards.isTwoPairs()
                             || cards.isDrill()) {
                         if (current_buy_in < 300) {
-                            return toRaise;
+                            return call;
                         } else {
                             return 0;
                         }
@@ -128,7 +128,7 @@ public class Player {
                             || cards.isTwoPairs()
                             || cards.isDrill()) {
                         if (current_buy_in < 300) {
-                            return toRaise;
+                            return call;
                         } else {
                             return 0;
                         }
@@ -139,7 +139,7 @@ public class Player {
                 }
                 case 5: {
                     if (current_buy_in < 200) {
-                        return toRaise;
+                        return call;
                     } else return 0;
                 }
             }
